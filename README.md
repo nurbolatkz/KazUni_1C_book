@@ -5,4 +5,8 @@
 
 ### KazUni’s interactive 1C language guide with animations, tasks, and real examples.
 
+
+[Онлайн Учебник](https://nurbolatkz.github.io/KazUni_1C_book/)
+
+
 (c) KazUniConsulting (КазУниКонсалтинг), ТОО
