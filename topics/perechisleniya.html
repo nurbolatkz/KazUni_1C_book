@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Перечисления и ПВХ в 1С | 1С Программирование</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .lesson-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .task-box {
+            background: #e3f2fd;
+            border-left: 5px solid #0d6efd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+        .concept-box {
+            border-left: 4px solid #0d6efd;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+        .header {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            color: white;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 20px 20px;
+        }
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0;
+        }
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .comparison-table {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .interactive-demo {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            .lesson-card {
+                padding: 20px;
+            }
+            .header {
+                padding: 2rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">1С Программирование</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Главная</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Темы
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">Объекты конфигурации</h6></li>
+                            <li><a class="dropdown-item" href="spravochniki.html">Справочники</a></li>
+                            <li><a class="dropdown-item" href="dokumenty.html">Документы</a></li>
+                            <li><a class="dropdown-item active" href="perechisleniya-pvh.html">Перечисления и ПВХ</a></li>
+                            <li><div class="dropdown-divider"></div></li>
+                            <li><h6 class="dropdown-header">Язык 1С</h6></li>
+                            <li><a class="dropdown-item" href="osnovy-yazyka.html">Основы языка</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumbs -->
+    <div class="container mt-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="../index.html">Главная</a></li>
+                <li class="breadcrumb-item"><a href="../index.html#part1">Объекты конфигурации</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Перечисления и ПВХ</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container my-4">
+        <section id="theme3" data-aos="fade-up" class="lesson-card">
+            <h1 class="text-primary">🔖 Перечисления и Планы видов характеристик (ПВХ)</h1>
+            <div class="concept-box">
+                <p class="lead">
+                    <strong>Перечисления</strong> и <strong>Планы видов характеристик (ПВХ)</strong> — это объекты конфигурации для хранения фиксированных или динамических значений, используемых в системе для классификации и категоризации данных.
+                </p>
+
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <h3 class="text-secondary">🔹 Основные различия:</h3>
+                        <div class="comparison-table">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Характеристика</th>
+                                        <th>Перечисления</th>
+                                        <th>ПВХ</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Гибкость</td>
+                                        <td>Фиксированный набор значений</td>
+                                        <td>Можно добавлять новые значения</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Реквизиты</td>
+                                        <td>Нет дополнительных реквизитов</td>
+                                        <td>Можно добавлять свои реквизиты</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Использование</td>
+                                        <td>Для строго определенных вариантов</td>
+                                        <td>Для расширяемых классификаторов</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Примеры</td>
+                                        <td>Типы контактов, виды оплаты</td>
+                                        <td>Цвета, размеры, статусы</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="interactive-demo">
+                            <h5 class="text-center">📊 Примеры использования</h5>
+                            <div class="mb-3">
+                                <label class="form-label">Выберите тип объекта:</label>
+                                <select class="form-select" id="demoType">
+                                    <option value="enum">Перечисление "ВидыОплаты"</option>
+                                    <option value="pvh">ПВХ "СтатусыДокументов"</option>
+                                </select>
+                            </div>
+                            <div id="enumDemo" class="demo-content">
+                                <pre class="bg-light p-3 rounded"><code>
+// Получение значения перечисления
+ВидОплаты = Перечисления.ВидыОплаты.Наличные;
+
+// Проверка значения
+Если ВидОплаты = Перечисления.ВидыОплаты.БанковскаяКарта Тогда
+    Сообщить("Оплата картой");
+КонецЕсли;
+                                </code></pre>
+                            </div>
+                            <div id="pvhDemo" class="demo-content" style="display:none;">
+                                <pre class="bg-light p-3 rounded"><code>
+// Получение элемента ПВХ
+Статус = ПланыВидовХарактеристик.СтатусыДокументов.НайтиПоНаименованию("Проведен");
+
+// Использование реквизита
+ЦветСтатуса = Статус.Цвет;
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="mt-4 text-secondary">🔹 Создание перечислений:</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>В конфигураторе:</h5>
+                        <ol>
+                            <li>Откройте ветку "Перечисления"</li>
+                            <li>Добавьте новое перечисление</li>
+                            <li>Укажите имя (например, "ВидыОплаты")</li>
+                            <li>Добавьте предопределенные значения</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Программное создание:</h5>
+                        <pre class="bg-light p-3 rounded"><code>
+// Создать перечисление программно нельзя,
+// но можно работать с существующим:
+
+// Получение списка значений
+СписокВидовОплаты = Перечисления.ВидыОплаты.ПолучитьСписок();
+
+// Проверка наличия значения
+ЕстьЗначение = Перечисления.ВидыОплаты.СодержитЗначение("Наличные");
+                        </code></pre>
+                    </div>
+                </div>
+
+                <h3 class="mt-4 text-secondary">🔹 Работа с ПВХ:</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Создание элемента ПВХ:</h5>
+                        <pre class="bg-light p-3 rounded"><code>
+// Создание нового элемента ПВХ
+НовыйСтатус = ПланыВидовХарактеристик.СтатусыДокументов.СоздатьЭлемент();
+НовыйСтатус.Наименование = "В обработке";
+НовыйСтатус.Цвет = "Желтый";
+НовыйСтатус.Записать();
+                        </code></pre>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Использование в документах:</h5>
+                        <pre class="bg-light p-3 rounded"><code>
+// Установка статуса документу
+Док = Документы.ЗаказКлиента.НайтиПоНомеру("00001");
+Док.Статус = ПланыВидовХарактеристик.СтатусыДокументов.Проведен;
+Док.Записать();
+
+// Получение цвета текущего статуса
+Цвет = Док.Статус.Цвет;
+                        </code></pre>
+                    </div>
+                </div>
+
+                <!-- Practical Task -->
+                <div class="task-box" data-aos="fade-left">
+                    <h4>📝 Практическое задание:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>1. Создайте перечисление:</h5>
+                            <p><strong>«ТипыКонтактов»</strong> с элементами:</p>
+                            <ul>
+                                <li>Телефон</li>
+                                <li>Email</li>
+                                <li>Факс</li>
+                                <li>СоцСеть</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>2. Создайте ПВХ:</h5>
+                            <p><strong>«МеткиТоваров»</strong> с:</p>
+                            <ul>
+                                <li>Предопределенные значения: "Акция", "Новинка", "Хит"</li>
+                                <li>Реквизиты: "Приоритет" (число), "Видимый" (булево)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#taskSolution">
+                            Показать решение
+                        </button>
+                        <div class="collapse mt-2" id="taskSolution">
+                            <div class="card card-body">
+                                <h5>Пример кода для работы с созданными объектами:</h5>
+                                <pre><code>
+// Использование перечисления
+Контакт = Справочники.Контакты.СоздатьЭлемент();
+Контакт.Тип = Перечисления.ТипыКонтактов.Email;
+Контакт.Значение = "example@mail.com";
+Контакт.Записать();
+
+// Создание элемента ПВХ
+Метка = ПланыВидовХарактеристик.МеткиТоваров.СоздатьЭлемент();
+Метка.Наименование = "Сезонный";
+Метка.Приоритет = 5;
+Метка.Видимый = Истина;
+Метка.Записать();
+
+// Назначение метки товару
+Товар = Справочники.Товары.НайтиПоНаименованию("Зимняя куртка");
+Товар.Метки.Добавить(Метка);
+Товар.Записать();
+                                </code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 alert alert-info">
+                    <h5>💡 Полезные советы:</h5>
+                    <ul>
+                        <li>Используйте перечисления для значений, которые не будут меняться (пол, типы документов)</li>
+                        <li>ПВХ идеально подходят для характеристик, которые могут расширяться (цвета, размеры)</li>
+                        <li>Добавляйте в ПВХ реквизиты для дополнительной информации о значениях</li>
+                        <li>Для часто используемых значений создавайте предопределенные элементы</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="footer-navigation py-3 bg-light mt-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-md-start">
+                    <a href="dokumenty.html" class="btn btn-outline-primary">← Документы</a>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="registr-svedeniy.html" class="btn btn-primary">Регистры сведений →</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+        
+        // Interactive demo switcher
+        document.getElementById('demoType').addEventListener('change', function() {
+            const value = this.value;
+            document.getElementById('enumDemo').style.display = value === 'enum' ? 'block' : 'none';
+            document.getElementById('pvhDemo').style.display = value === 'pvh' ? 'block' : 'none';
+        });
+    </script>
+</body>
+</html>
