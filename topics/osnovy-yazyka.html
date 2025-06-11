@@ -534,6 +534,290 @@ ${structCode}
 // Всего элементов: ${Object.keys(demoStruct).length}`.replace(/</g, '&lt;');
     }
 </script>
+<!-- Интерактивный пример: ТаблицаЗначений -->
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="interactive-demo p-3 border rounded">
+            <h5 class="text-secondary">📊 Интерактивный пример: ТаблицаЗначений</h5>
+            
+            <!-- Управление колонками -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Добавить колонку:</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="columnNameInput" placeholder="Название">
+                        <select class="form-select" id="columnTypeInput">
+                            <option value="Строка">Строка</option>
+                            <option value="Число">Число</option>
+                            <option value="Дата">Дата</option>
+                            <option value="Булево">Булево</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="addColumn()">Добавить</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Удалить колонку:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="columnToRemove">
+                            <!-- Заполнится динамически -->
+                        </select>
+                        <button class="btn btn-outline-danger" onclick="removeColumn()">Удалить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Управление строками -->
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label class="form-label">Добавить строку:</label>
+                    <div id="rowInputs">
+                        <!-- Динамически генерируемые поля -->
+                    </div>
+                    <button class="btn btn-primary mt-2" onclick="addRow()">Добавить строку</button>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Удалить строку:</label>
+                    <div class="input-group">
+                        <select class="form-select" id="rowToRemove">
+                            <!-- Заполнится динамически -->
+                        </select>
+                        <button class="btn btn-outline-danger" onclick="removeRow()">Удалить</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Отображение таблицы -->
+            <div class="table-responsive mb-3">
+                <table class="table table-bordered table-sm" id="valueTableDisplay">
+                    <thead class="table-light">
+                        <tr id="tableHeaders"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+            
+            <!-- Методы и примеры -->
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-outline-secondary mb-2" onclick="showTableMethods()">
+                        Показать методы ТаблицыЗначений
+                    </button>
+                    <div id="tableMethods" class="d-none">
+                        <h6>Основные методы:</h6>
+                        <ul class="small">
+                            <li><code>.Колонки.Добавить()</code> - добавить колонку</li>
+                            <li><code>.НоваяСтрока()</code> - создать строку</li>
+                            <li><code>.Удалить()</code> - удалить строку</li>
+                            <li><code>.Найти()</code> - поиск по значению</li>
+                            <li><code>.Сортировать()</code> - сортировка</li>
+                            <li><code>.Выгрузить()</code> - экспорт в массив</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-sm btn-outline-primary" onclick="generateTableCode()">
+                        Сгенерировать код
+                    </button>
+                    <div class="code-example mt-2" id="generatedTableCode">
+                        <pre><code>// Код для создания таблицы
+Таблица = Новый ТаблицаЗначений;
+// Добавьте колонки и строки...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Практические примеры -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="code-example">
+            <h5 class="text-secondary">🔧 Создание и заполнение</h5>
+            <pre><code>// Создание таблицы
+Товары = Новый ТаблицаЗначений;
+
+// Добавление колонок
+Товары.Колонки.Добавить("Наименование", Новый ОписаниеТипов("Строка"));
+Товары.Колонки.Добавить("Количество", Новый ОписаниеТипов("Число"));
+Товары.Колонки.Добавить("Цена", Новый ОписаниеТипов("Число"));
+
+// Добавление строк
+НоваяСтрока = Товары.добавить();
+НоваяСтрока.Наименование = "Монитор";
+НоваяСтрока.Количество = 5;
+НоваяСтрока.Цена = 15000;
+</code></pre>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="code-example">
+            <h5 class="text-secondary">🔧 Работа с данными</h5>
+            <pre><code>// Поиск строки
+Найденные = Товары.НайтиСтроки(Новый Структура("Наименование", "Монитор"));
+
+// Сортировка
+Товары.Сортировать("Наименование");
+
+// Перебор строк
+Для Каждого Строка Из Товары Цикл
+    Сообщить(Строка.Наименование + " - " + Строка.Количество + " шт.");
+КонецЦикла;
+
+// Выгрузка в массив
+МассивТоваров = Товары.Выгрузить();</code></pre>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Модель данных
+    let valueTable = {
+        columns: [],
+        rows: []
+    };
+
+    // Обновление интерфейса
+    function updateTableUI() {
+        // Обновление выбора колонок для удаления
+        const columnSelect = document.getElementById('columnToRemove');
+        columnSelect.innerHTML = valueTable.columns.map(col => 
+            `<option value="${col.name}">${col.name} (${col.type})</option>`
+        ).join('');
+        
+        // Обновление выбора строк для удаления
+        const rowSelect = document.getElementById('rowToRemove');
+        rowSelect.innerHTML = valueTable.rows.map((row, index) => 
+            `<option value="${index}">Строка ${index + 1}</option>`
+        ).join('');
+        
+        // Обновление полей для ввода строк
+        const rowInputs = document.getElementById('rowInputs');
+        rowInputs.innerHTML = valueTable.columns.map(col => 
+            `<div class="input-group mb-2">
+                <span class="input-group-text">${col.name}</span>
+                <input type="${getInputType(col.type)}" class="form-control" 
+                       id="row_${col.name}" placeholder="${col.type}">
+            </div>`
+        ).join('');
+        
+        // Отображение таблицы
+        renderTable();
+    }
+    
+    function getInputType(columnType) {
+        const types = {
+            'Число': 'number',
+            'Строка': 'text',
+            'Дата': 'date',
+            'Булево': 'checkbox'
+        };
+        return types[columnType] || 'text';
+    }
+    
+    function renderTable() {
+        const headers = document.getElementById('tableHeaders');
+        const body = document.getElementById('tableBody');
+        
+        headers.innerHTML = valueTable.columns.map(col => 
+            `<th>${col.name}<br><small class="text-muted">${col.type}</small></th>`
+        ).join('');
+        
+        body.innerHTML = valueTable.rows.map(row => 
+            `<tr>${valueTable.columns.map(col => 
+                `<td>${formatValue(row[col.name], col.type)}</td>`
+            ).join('')}</tr>`
+        ).join('');
+    }
+    
+    function formatValue(value, type) {
+        if (value === undefined) return '';
+        if (type === 'Булево') return value ? 'Да' : 'Нет';
+        if (type === 'Дата') return new Date(value).toLocaleDateString();
+        return value;
+    }
+    
+    // Методы для работы с таблицей
+    function addColumn() {
+        const name = document.getElementById('columnNameInput').value;
+        const type = document.getElementById('columnTypeInput').value;
+        
+        if (name && !valueTable.columns.some(col => col.name === name)) {
+            valueTable.columns.push({ name, type });
+            document.getElementById('columnNameInput').value = '';
+            updateTableUI();
+        }
+    }
+    
+    function removeColumn() {
+        const name = document.getElementById('columnToRemove').value;
+        valueTable.columns = valueTable.columns.filter(col => col.name !== name);
+        valueTable.rows.forEach(row => delete row[name]);
+        updateTableUI();
+    }
+    
+    function addRow() {
+        const newRow = {};
+        valueTable.columns.forEach(col => {
+            const input = document.getElementById(`row_${col.name}`);
+            let value = input.value;
+            
+            if (col.type === 'Число') value = parseFloat(value) || 0;
+            if (col.type === 'Булево') value = input.checked;
+            
+            newRow[col.name] = value;
+            input.value = '';
+        });
+        
+        valueTable.rows.push(newRow);
+        updateTableUI();
+    }
+    
+    function removeRow() {
+        const index = parseInt(document.getElementById('rowToRemove').value);
+        valueTable.rows.splice(index, 1);
+        updateTableUI();
+    }
+    
+    function showTableMethods() {
+        document.getElementById('tableMethods').classList.toggle('d-none');
+    }
+    
+    function generateTableCode() {
+    const columnsCode = valueTable.columns.map(col => 
+        `Таблица.Колонки.Добавить("${col.name}", Новый ОписаниеТипов("${col.type}"));`
+    ).join('\n');
+    
+    const rowsCode = valueTable.rows.map(row => {
+        const rowCode = valueTable.columns.map(col => {
+            let val = row[col.name] || '';
+            if (col.type === 'Строка') val = `"${val}"`;
+            if (col.type === 'Булево') val = val ? 'Истина' : 'Ложь';
+            if (col.type === 'Дата') val = `Дата('${val}')`;
+            return `НоваяСтрока.${col.name} = ${val};`;
+        }).join('\n    ');
+        
+        return `НоваяСтрока = Таблица.Добавить();\n    ${rowCode}`;
+    }).join('\n\n');
+    
+    const code = `// Создаем таблицу значений
+Таблица = Новый ТаблицаЗначений;
+    
+// Добавляем колонки
+${columnsCode}
+
+// Заполняем таблицу
+${rowsCode}
+
+// Итого строк: ${valueTable.rows.length}`;
+    
+    document.getElementById('generatedTableCode').innerHTML = 
+        `<pre><code>${code.replace(/</g, '&lt;')}</code></pre>`;
+}
+    
+    // Инициализация
+    updateTableUI();
+</script>
 
     <!-- Practical Task -->
     <div class="task-box mt-4" data-aos="fade-left">
